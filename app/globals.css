@@ -2,32 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background: #090909;
+    --foreground: #ffffff;
+    --accent: #03d5f8;
+    --muted: rgba(255, 255, 255, 0.6);
+    --highlight: linear-gradient(270deg, #ffe5d1 0%, #c9f5ff 100.51%);
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer base {
+  * {
+    @apply scroll-smooth;
+  }
+  body {
+    @apply w-full min-h-screen bg-background text-foreground text-base font-normal overflow-x-hidden;
+  }
+  h1 {
+    @apply text-4xl lg:text-[58px] font-medium leading-tight;
+  }
+  h2 {
+    @apply text-5xl lg:text-[56px] font-bold leading-tight;
+  }
+  h3 {
+    @apply text-[30px] font-semibold leading-tight;
+  }
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer components {
+  body > header > div {
+    position: relative;
+  }
+  .btn-primary {
+    @apply bg-accent px-12 py-4 rounded-[45px] font-semibold text-black uppercase;
+  }
+  .btn-secondary {
+    @apply bg-[rgba(255,255,255,0.06)] backdrop-blur-[30px] px-12 py-4 rounded-[45px] font-semibold uppercase;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    @apply px-[6rem];
   }
 }
